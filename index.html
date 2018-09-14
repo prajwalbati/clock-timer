@@ -1,159 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Javascript Timer</title>
-    <style>
-        body{
-    text-align: center;
-    background: #00ECB9;
-  font-family: sans-serif;
-  font-weight: 100;
-}
-
-h1{
-  color: #396;
-  font-weight: 100;
-  font-size: 40px;
-  margin: 40px 0px 20px;
-}
-
-#clockdiv{
-    font-family: sans-serif;
-    color: #fff;
-    display: none;
-    font-weight: 100;
-    text-align: center;
-    font-size: 30px;
-}
-
-#clockdiv > div{
-    padding: 10px;
-    border-radius: 3px;
-    background: #00BF96;
-    display: inline-block;
-}
-
-#clockdiv div > span{
-    padding: 15px;
-    border-radius: 3px;
-    background: #00816A;
-    display: inline-block;
-}
-
-.smalltext{
-    padding-top: 5px;
-    font-size: 16px;
-}
-    </style>
-</head>
-<body>
-    <h1>Countdown Clock</h1>
-<div id="clockdiv">
-  <div>
-    <span class="days"></span>
-    <div class="smalltext">Days</div>
-  </div>
-  <div>
-    <span class="hours"></span>
-    <div class="smalltext">Hours</div>
-  </div>
-  <div>
-    <span class="minutes"></span>
-    <div class="smalltext">Minutes</div>
-  </div>
-  <div>
-    <span class="seconds"></span>
-    <div class="smalltext">Seconds</div>
-  </div>
-</div>
-
-
-
-    <script type="text/javascript">
-        var schedule = [
-    ['Jul 25 2018', 'Sept 20 2018'],
-    ['Sept 21 2018', 'Jul 25 2018'],
-    ['Jul 25 2018', 'Jul 25 2038']
-];
-
-var timeInMinutes = 10;
-var currentTime = Date.parse(new Date());
-
-// to store in cookie
-// if there's a cookie with the name myClock, use that value as the deadline
-if(document.cookie && document.cookie.match('myClock')){
-  // get deadline value from cookie
-  var deadline = document.cookie.match(/(^|;)myClock=([^;]+)/)[2];
-}
-
-// otherwise, set a deadline 10 minutes from now and 
-// save it in a cookie with that name
-else{
-  // create deadline 10 minutes from now
-  var timeInMinutes = 10;
-  var currentTime = Date.parse(new Date());
-  var deadline = new Date(currentTime + timeInMinutes*60*1000);
-
-  // store deadline in cookie for future reference
-  document.cookie = 'myClock=' + deadline + '; path=/;';
-}
-
-        // console.log(deadline);
-        initializeClock("clockdiv", deadline);
-
-// to take schedule dates
-        // iterate over each element in the schedule
-// for(var i=0; i<schedule.length; i++){
-//   var startDate = schedule[i][0];
-//   var endDate = schedule[i][1];
-
-//   // put dates in milliseconds for easy comparisons
-//   var startMs = Date.parse(startDate);
-//   var endMs = Date.parse(endDate);
-//   var currentMs = Date.parse(new Date());
-
-//   // if current date is between start and end dates, display clock
-//   if(endMs > currentMs && currentMs >= startMs ){
-//       initializeClock('clockdiv', endDate);
-//   }
-// }
-
-        function getTimeRemaining(endDate) {
-            var t = Date.parse(endDate) - Date.parse(new Date());
-            var seconds = Math.floor( (t/1000) % 60 );
-            var minutes = Math.floor( (t/1000/60) % 60 );
-            var hours = Math.floor( (t/(1000*60*60)) % 24 );
-            var days = Math.floor( t/(1000*60*60*24) );
-            return {
-                'total': t,
-                'days': days,
-                'hours': hours,
-                'minutes': minutes,
-                'seconds': seconds
-            };
-        }
-
-        function initializeClock(id, endtime){
-            var clock = document.getElementById(id);
-            clock.style.display = 'block';
-            var daysSpan = clock.querySelector('.days');
-            var hoursSpan = clock.querySelector('.hours');
-            var minutesSpan = clock.querySelector('.minutes');
-            var secondsSpan = clock.querySelector('.seconds');
-            function updateClock(){
-                var t = getTimeRemaining(endtime);
-                daysSpan.innerHTML = t.days;
-                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-                if(t.total<=0){
-                    clearInterval(timeinterval);
-                }
-            }
-
-            updateClock(); // run function once at first to avoid delay
-            var timeinterval = setInterval(updateClock, 1000);
-        }
-    </script>
-</body>
+    <head>
+        <title>Javascript Timer</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <style>
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li>Current Date & Time</li>
+                <li>Timer</li>
+                <li>Countdown 1</li>
+                <li>Countdown 2</li>
+            </ul>
+        </nav>
+        <div id="currentDateTime">
+            <h1>Current Date & Time</h1>
+            <div class="clock">
+                <div class="date"></div>
+                <div class="time">
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>Countdown Clock</h1>
+        <div id="clockdiv">
+            <div>
+                <span class="days"></span>
+                <div class="smalltext">Days</div>
+            </div>
+            <div>
+                <span class="hours"></span>
+                <div class="smalltext">Hours</div>
+            </div>
+            <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Minutes</div>
+            </div>
+            <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Seconds</div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/scripts.js"></script>
+    </body>
 </html>

@@ -1,0 +1,76 @@
+body {
+    text-align: center;
+    background: #00ECB9;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+nav ul {
+    list-style-type: none;
+}
+nav ul li {
+    font-size: 20px;
+    font-weight: 600;
+    display: inline;
+    cursor: pointer;
+    margin: 0 10px;
+    border-right: 1px solid black;
+    padding-right: 20px;
+}
+
+nav ul li:last-child {
+    border: none;
+}
+
+nav ul li:hover {
+    color: #396;
+}
+
+#currentDateTime .clock .time >div {
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#currentDateTime .clock .time div>span {
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+h1 {
+    color: #396;
+    font-weight: 100;
+    font-size: 40px;
+    margin: 40px 0px 20px;
+}
+
+#clockdiv {
+    font-family: sans-serif;
+    color: #fff;
+    display: none;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv>div {
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div>span {
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext {
+    padding-top: 5px;
+    font-size: 16px;
+}
